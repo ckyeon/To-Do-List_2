@@ -28,11 +28,13 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
   }
 
   addTodo(text: string){
-    this.todos.push({
-      id: this.todos.length,
-      done: false,
-      text: text
-    });
+    if(text != ''){
+      this.todos.push({
+        id: this.todos.length,
+        done: false,
+        text: text
+      });
+    }
   }
 
   deleteTodo(id: number){

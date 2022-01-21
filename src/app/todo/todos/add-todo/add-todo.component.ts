@@ -5,27 +5,28 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
   template: `
     <p>
       <button (click)="addTodo(newText)">+</button>
-      <input type="text" placeholder="할 일 추가" [(ngModel)]="newText">
+      <input type="text" placeholder="할 일 입력" [(ngModel)]="newText">
     </p>
   `,
   styles: [`
-    :host{
-      display: block;
-      padding: 15px;
+    :host {
+      display: flex;
+      width: 600px;
+      padding: 5px;
       background-color: white;
     }
 
-    input{
+    input {
       display: inline-block;
-      font-size: 18px;
+      font-size: 16px;
       border: none;
     }
 
-    input:focus, botton:focus{
+    input:focus, botton:focus {
       outline: none;
     }
 
-    button{
+    button {
       width: 24px;
       height: 24px;
       border-radius: 24px;
@@ -33,7 +34,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
       font-size: 16px;
       line-height: 17px;
       border: 1px solid dimgray;
-      background-color: darkblue;
+      background-color: #6b6bf5;
     }
   `]
 })

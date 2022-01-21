@@ -12,6 +12,7 @@ import {Todo} from "../../share/todo.model";
   styles: [`
   :host{
     display: block;
+    width: 500px;
     padding: 15px;
     color: darkgray;
     background-color: white;

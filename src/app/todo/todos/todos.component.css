@@ -17,3 +17,22 @@ h1{
 app-todo, app-add-todo{
   border-bottom: 1px solid #cccccc;
 }
+
+.todoList{
+  width: 300px;
+  height: 20px;
+  display:inline-block;
+  background-color: white;
+
+}
+input:checked + label{
+  text-decoration: line-through;
+}
+
+button{
+  width: 100px;
+  height: 20px;
+  background-color: indianred;
+  border: None;
+  color: white;
+}
