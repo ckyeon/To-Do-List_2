@@ -5,7 +5,7 @@
 <div>
   <div *ngFor="let todo of todos" (click)="toggleTodo(todo)">
     <app-todo [todo]="todo"> </app-todo>
-    <button (click)="deleteTodo(todo.text)">Remove</button>
+    <button (click)="deleteTodo(todo.id)">Remove</button>
   </div>
 </div>
 <div>

@@ -17,8 +17,6 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
 
   constructor() {
     this.todos = [
-      {done:false, text: "운동하기"},
-      {done:false, text: "공부하기"},
     ];
   }
 
@@ -31,14 +29,15 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
 
   addTodo(text: string){
     this.todos.push({
+      id: this.todos.length,
       done: false,
       text: text
     });
   }
 
-  deleteTodo(text: string){
+  deleteTodo(id: number){
     for(let i=0; i<= this.todos.length; i++){
-      if(text == this.todos[i].text){
+      if(id == this.todos[i].id){
         this.todos.splice(i, 1);
       }
     }
