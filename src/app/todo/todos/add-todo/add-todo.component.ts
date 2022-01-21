@@ -36,7 +36,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
       color: white;
       font-size: 16px;
       line-height: 17px;
-      border: 1px solid dimgray;
+      border: none;
       background-color: #6b6bf5;
     }
   `]
