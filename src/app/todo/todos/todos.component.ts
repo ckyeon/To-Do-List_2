@@ -44,4 +44,29 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
       }
     }
   }
+
+  AllCompleteTodo(){
+    let check = document.querySelectorAll('#check');
+    for(let i=0; i<= this.todos.length; i++){
+      if(check[i].getAttribute('checked') != 'true'){
+        check[i].setAttribute('checked', 'true');
+      }
+      this.todos[i].done = true;
+    }
+  }
+
+  AllResetTodo(){
+    let check = document.querySelectorAll('#check');
+    for(let i=0; i<= this.todos.length; i++){
+      if(check[i].getAttribute('checked') != 'false'){
+        check[i].setAttribute('checked', 'false');
+      }
+      this.todos[i].done = false;
+    }
+  }
+
+  AllDeleteTodo(){
+    let todos = this.todos;
+    todos.splice(0, todos.length);
+  }
 }

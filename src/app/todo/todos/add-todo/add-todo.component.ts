@@ -5,7 +5,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
   template: `
     <p>
       <button (click)="addTodo(newText)">+</button>
-      <input type="text" placeholder="할 일 입력" [(ngModel)]="newText">
+      <input type="text" placeholder=" 할 일 입력" [(ngModel)]="newText">
     </p>
   `,
   styles: [`

@@ -1,21 +1,24 @@
-<div class="title">
-  <h1>To-do list</h1>
-  <h2>{{ today | date:'Y년 M월 d일' }}</h2>
-</div>
-<div>
-  <app-add-todo (onTodoAdded)="addTodo($event)"></app-add-todo>
-</div>
-<div>
-  <div *ngFor="let todo of todos" (click)="toggleTodo(todo)">
-    <ul ng-repeat="todo in todos" class="list-unstyled">
-      <div class="input-group">
-        <span class="input-group-addon">
-          <input type="checkbox"/>
-          <label class="todoList">{{ todo.text }}</label>
-          <button (click)="deleteTodo(todo.id)">Remove</button>
-        </span>
-      </div>
-    </ul>
+<div class="box">
+  <div class="title">
+    <h1>To-do list</h1>
+    <h2>{{ today | date:'Y년 M월 d일' }}</h2>
+  </div>
+  <div>
+    <app-add-todo (onTodoAdded)="addTodo($event)"></app-add-todo>
+  </div>
+  <div>
+    <div *ngFor="let todo of todos" (click)="toggleTodo(todo)">
+      <span>
+        <input type="checkbox" id="check"/>
+        <label class="todoList">{{ todo.text }}</label>
+        <button class="remove" (click)="deleteTodo(todo.id)">Remove</button>
+        {{todo.done}}
+      </span>
+    </div>
+  </div>
+  <div class="btn-group">
+    <button (click)="AllCompleteTodo()">All Completed</button>
+    <button (click)="AllResetTodo()">All Reset</button>
+    <button (click)="AllDeleteTodo()">All Clear</button>
   </div>
 </div>
-
