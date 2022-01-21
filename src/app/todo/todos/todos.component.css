@@ -1,5 +1,9 @@
 .box{
   text-align: center;
+  margin: 20px auto;
+  width: 1000px;
+  height: auto;
+  border: 1px solid #bb83f6;
 }
 
 .title{
@@ -23,18 +27,20 @@ app-todo, app-add-todo{
 }
 
 .todoList{
-  position: relative;
+  margin-top: 10px;
   width: 300px;
   height: 20px;
   display: inline-block;
   background-color: white;
   border-bottom: 1px solid #252222;
 }
+
 input:checked + label{
   text-decoration: line-through;
 }
 
 .remove{
+  cursor: pointer;
   position: relative;
   bottom: 3px;
   width: 100px;
@@ -45,5 +51,6 @@ input:checked + label{
 }
 
 .btn-group{
-  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }

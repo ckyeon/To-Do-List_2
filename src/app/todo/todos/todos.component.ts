@@ -46,23 +46,29 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
   }
 
   AllCompleteTodo(){
-    let check = document.querySelectorAll('#check');
-    for(let i=0; i<= this.todos.length; i++){
-      if(check[i].getAttribute('checked') != 'true'){
-        check[i].setAttribute('checked', 'true');
+    const items = document.querySelectorAll(".todoList");
+    items.forEach((item) => item.classList.remove("done"));
+
+    this.todos.forEach((obj) => {
+      if (obj.done === false) {
+        obj.done = true;
       }
-      this.todos[i].done = true;
-    }
+    });
+    let checks = document.querySelectorAll('#check');
+    checks.forEach((check) => check.setAttribute('checked', 'true'));
   }
 
   AllResetTodo(){
-    let check = document.querySelectorAll('#check');
-    for(let i=0; i<= this.todos.length; i++){
-      if(check[i].getAttribute('checked') != 'false'){
-        check[i].setAttribute('checked', 'false');
+    const items = document.querySelectorAll(".todoList");
+    items.forEach((item) => item.classList.remove("done"));
+
+    this.todos.forEach((obj) => {
+      if (obj.done === true) {
+        obj.done = false;
       }
-      this.todos[i].done = false;
-    }
+    });
+    let checks = document.querySelectorAll('#check');
+    checks.forEach((check) => check.setAttribute('checked', 'false'));
   }
 
   AllDeleteTodo(){

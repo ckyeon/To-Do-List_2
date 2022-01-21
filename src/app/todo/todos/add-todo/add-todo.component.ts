@@ -10,10 +10,12 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
   `,
   styles: [`
     :host {
-      display: flex;
-      width: 600px;
+      position: relative;
+      display: inline-block;
+      width: 500px;
       padding: 5px;
       background-color: white;
+      text-align: left;
     }
 
     input {
@@ -27,6 +29,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
     }
 
     button {
+      cursor: pointer;
       width: 24px;
       height: 24px;
       border-radius: 24px;
