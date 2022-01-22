@@ -14,6 +14,8 @@ app/**/*.js.map
 node_modules/
 bower_components/
 
+Datas/
+
 # IDEs and editors
 .idea/
 
