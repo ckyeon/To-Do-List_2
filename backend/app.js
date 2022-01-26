@@ -1,19 +1,14 @@
-var express = require("express")
-const { model } = require("mongoose")
-var app = express()
+var express = require("express");
+var bodyparser = require("body-parser");
+var router = require("./router/todolist");
 
-const path = require('path')
+var app = express();
+var urlencodedParser=bodyparser.urlencoded({extened: false});
 
-
-app.use("/node_modules", express.static(path.join(__dirname, "/node_modules")))
-
-app.get("/", function (req, res) {
-  res.send("Hello World!")
-})
-
+app.use("router");
 
 app.listen(3000, function () {
-  console.log("port 3000!")
+  console.log("Connected port 3000!")
 })
 
 model.exports=app;
