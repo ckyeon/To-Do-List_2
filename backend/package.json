@@ -19,6 +19,7 @@
   "homepage": "https://github.com/ckyeon/To-Do-List_2#readme",
   "dependencies": {
     "angular": "^1.8.2",
+    "body-parser": "^1.19.1",
     "express": "^4.17.2",
     "nodemon": "^2.0.15"
   }
