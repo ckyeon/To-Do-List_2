@@ -3,9 +3,9 @@ var bodyparser = require("body-parser");
 var router = require("./router/todolist");
 
 var app = express();
-var urlencodedParser=bodyparser.urlencoded({extened: false});
 
-app.use("router");
+app.use(router);
+app.use(express.urlencoded({extened: true}))
 
 app.listen(3000, function () {
   console.log("Connected port 3000!")
