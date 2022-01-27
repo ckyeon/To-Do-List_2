@@ -1,11 +1,24 @@
-var express = require("express")
-var app = express()
+const express = require("express");
+const routes = require("./routes/todolist");
+const mongoose = require('mongoose');
+const bodyParser = require("body-parser");
 
-const todoRouter = require('./routes')
+const app = express();
 
-app.use('/todolists', todoRouter);
+mongoose.connect('mongodb://127.0.0.1:27017');
+var db = mongoose.connection;
+db.on('error', console.error);
+db.once('open', function(){
+    // CONNECTED TO MONGODB SERVER
+    console.log("Connected to mongod server");
+});
 
+app.use(routes);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extened: true}));
 
 app.listen(3000, function () {
-  console.log("port 3000!")
+  console.log("Connected port 3000!")
 })
+
+module.exports=app;
