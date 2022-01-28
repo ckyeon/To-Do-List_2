@@ -7,4 +7,13 @@ const showlist = asyncHandler(async (req, res) => {
     res.json(createResponse(res, list));
 });
 
+const addtodo = asyncHandler(async (req, res) => {
+    console.log(req.body);
+    const newtodo=await todolist.create({ text: req.body.text, done: req.body.done });
+
+    //res.json(createResponse(res, newtodo));
+    res.redirect("/todolist");
+});
+
 exports.showlist=showlist;
+exports.addtodo=addtodo;
