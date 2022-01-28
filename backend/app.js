@@ -17,8 +17,4 @@ app.use(routes);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extened: true}));
 
-app.listen(3000, function () {
-  console.log("Connected port 3000!")
-})
-
 module.exports=app;
