@@ -1,11 +1,11 @@
 const express = require("express");
 const routes = require("./routes/todolist");
 const mongoose = require('mongoose');
-const bodyParser = require("body-parser");
+require('dotenv').config();
 
 const app = express();
 
-mongoose.connect('mongodb://127.0.0.1:27017');
+mongoose.connect(process.env.MONGO_MAIN_DB_URL);
 var db = mongoose.connection;
 db.on('error', console.error);
 db.once('open', function(){
@@ -13,12 +13,7 @@ db.once('open', function(){
     console.log("Connected to mongod server");
 });
 
+app.use(express.json());
 app.use(routes);
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extened: true}));
-
-app.listen(3000, function () {
-  console.log("Connected port 3000!")
-})
 
 module.exports=app;
