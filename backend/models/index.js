@@ -11,7 +11,7 @@ db.once('open', function(){
 });
 
 const TodolistSchema = new mongoose.Schema({
-    text: String,
+    text: {type:String, trim: true},
     done: {type: Boolean, default: false}
 });
 exports.todolist = db.model("todolist", TodolistSchema);
