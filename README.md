@@ -25,8 +25,7 @@
     ]
    }
    ```
-
-
+<br>
 할일 추가하기
 * (post) localhost:port/addtodo
     * 요청
@@ -34,8 +33,7 @@
     |body| 예 |
     |---|---|
     |test|할일내용|
-
-
+<br>
 할일 삭제하기
 * (post) localhost:port/deltodo
     * 요청
@@ -43,8 +41,7 @@
     |body| 예 |
     |---|---|
     |id|todo의 id|
-
-
+<br>
 할일 완료여부수정
 * (post) localhost:port/updatetodo
     * 요청
