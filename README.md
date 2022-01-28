@@ -1,7 +1,7 @@
 # 2022 sw 운영보조원 과제 - To-Do-List
 이진원, 오지우, 송수영
 # api
-* (post) localhost:port/todolist 할일목록 가져오기
+* (get) localhost:port/todolist 할일목록 가져오기
     * 응답 예
     ```json
    {
@@ -24,3 +24,10 @@
     ]
    }
    ```
+
+   * (post) localhost:port/addtodo 할일 추가하기
+    * 요청
+
+    |body| 예 |
+    |---|---|
+    |test|할일내용|

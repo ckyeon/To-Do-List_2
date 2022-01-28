@@ -9,7 +9,7 @@ const showlist = asyncHandler(async (req, res) => {
 
 const addtodo = asyncHandler(async (req, res) => {
     console.log(req.body);
-    const newtodo=await todolist.create({ text: req.body.text, done: req.body.done });
+    const newtodo=await todolist.create({ text: req.body.text });
 
     //res.json(createResponse(res, newtodo));
     res.redirect("/todolist");
