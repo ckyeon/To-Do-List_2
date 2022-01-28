@@ -1,4 +1,4 @@
-const todolist=require('../schemas/todolist');
+const { todolist }=require('../models/index');
 const asyncHandler = require('express-async-handler');
 const { createResponse } = require('../utils/response');
 
