@@ -3,7 +3,7 @@ const controller=require('./controller');
 const Todolist = require('../schemas/todolist');
 
 //todolist page
-router.get('/todolist', controller.showlist);
+router.post('/todolist', controller.showlist);
 
 
 module.exports=router;
