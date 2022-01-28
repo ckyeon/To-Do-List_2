@@ -10,5 +10,8 @@ router.post('/addtodo', controller.addtodo);
 //할일 추가
 router.post('/deltodo', controller.deltodo);
 
+//할일 완료여부수정
+router.post('/updatetodo', controller.updatetodo);
+
 
 module.exports=router;
