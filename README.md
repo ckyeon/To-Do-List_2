@@ -53,3 +53,12 @@
     |---|---|
     |id|todo의 id|
 	|done|todo의 done|
+
+
+할일 전부완료
+* (get) localhost:port/updateall
+    * 요청
+
+    |body| 예 |
+    |---|---|
+    

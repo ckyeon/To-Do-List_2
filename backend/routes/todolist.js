@@ -13,5 +13,8 @@ router.post('/deltodo', controller.deltodo);
 //할일 완료여부수정
 router.post('/updatetodo', controller.updatetodo);
 
+//할일 전부완료
+router.get('/updateall', controller.updateall);
+
 
 module.exports=router;
