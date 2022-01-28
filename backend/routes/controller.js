@@ -24,12 +24,20 @@ const updatetodo = asyncHandler(async (req, res) => {
     if(req.body.done==false)
         await todolist.updateOne({ id: req.body.id }, { done: true});
     else
-    await todolist.updateOne({ id: req.body.id }, { done: false});
+        await todolist.updateOne({ id: req.body.id }, { done: false});
 
     res.redirect("/todolist");
 });
+
+const updateall = asyncHandler(async (req, res) => {
+        await todolist.updateMany({}, { $set: { done: true }});
+
+    res.redirect("/todolist");
+});
+
 
 exports.showlist=showlist;
 exports.addtodo=addtodo;
 exports.deltodo=deltodo;
 exports.updatetodo=updatetodo;
+exports.updateall=updateall;
