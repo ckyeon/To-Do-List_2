@@ -7,5 +7,8 @@ router.get('/todolist', controller.showlist);
 //할일 추가
 router.post('/addtodo', controller.addtodo);
 
+//할일 추가
+router.post('/deltodo', controller.deltodo);
+
 
 module.exports=router;

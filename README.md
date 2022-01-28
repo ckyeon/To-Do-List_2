@@ -25,7 +25,14 @@
    }
    ```
 
-   * (post) localhost:port/addtodo 할일 추가하기
+* (post) localhost:port/addtodo 할일 추가하기
+    * 요청
+
+    |body| 예 |
+    |---|---|
+    |test|할일내용|
+
+* (post) localhost:port/deltodo 할일 삭제하기
     * 요청
 
     |body| 예 |
