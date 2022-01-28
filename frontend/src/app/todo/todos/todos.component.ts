@@ -18,11 +18,12 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
   today: Date = new Date();
 
   constructor(private http: HttpClient, private service: TodoService) {
-    this.todos = [
-    ];
+    this.todos = [];
   }
 
   ngOnInit(): void {
+    this.getTodo();
+    console.log('haha');
   }
 
   toggleTodo(todo: any){
