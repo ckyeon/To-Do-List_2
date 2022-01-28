@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Todo} from "../share/todo.model";
+import { HttpClient} from '@angular/common/http';
+import {TodoService} from "../todo.service";
 
 // 뷰
 @Component({  // 타입스크립트의 데코레이터 -> 일종의 함수, 컴포넌트가 어떻게 동작하는 지를 메타데이터로 전달
@@ -15,7 +17,7 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
   newText: string = '';
   today: Date = new Date();
 
-  constructor() {
+  constructor(private http: HttpClient, private service: TodoService) {
     this.todos = [
     ];
   }
@@ -27,14 +29,20 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
     todo.done = !todo.done
   }
 
+  getTodo(){
+    this.service.get();
+  }
+
   addTodo(text: string){
-    if(text != ''){
-      this.todos.push({
-        id: this.todos.length,
-        done: false,
-        text: text
-      });
-    }
+    var newId = !this.todos.length ? 1 : this.todos[this.todos.length - 1].id + 1
+    var newTodo = {
+      id: newId,
+      done: false,
+      text: text
+    };
+    console.log(this.service.get());
+    this.service.add(newTodo);
+    this.todos.push(newTodo)
   }
 
   deleteTodo(id: number){
