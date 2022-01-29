@@ -18,7 +18,7 @@ router.delete('/:id', controller.deltodo)
 router.put("/:id", controller.updatetodo)
 
 //할일 전부완료
-router.get('/updateall', controller.updateall);
+router.put('/', controller.updateall);
 
 
 module.exports=router;

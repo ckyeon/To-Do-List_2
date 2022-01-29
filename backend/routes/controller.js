@@ -11,13 +11,13 @@ const showlist = asyncHandler(async (req, res) => {
 const addtodo = asyncHandler(async (req, res) => {
     await todolist.create({ text: req.body.text });
 
-    res.redirect("/todolist");
+    res.redirect("/");
 });
 
 const deltodo = asyncHandler(async (req, res) => {
     await todolist.deleteOne({ id: req.body.id });
 
-    res.redirect("/todolist");
+    res.redirect("/");
 });
 
 const updatetodo = asyncHandler(async (req, res) => {
@@ -26,13 +26,13 @@ const updatetodo = asyncHandler(async (req, res) => {
     else
         await todolist.updateOne({ id: req.body.id }, { done: false});
 
-    res.redirect("/todolist");
+    res.redirect("/");
 });
 
 const updateall = asyncHandler(async (req, res) => {
         await todolist.updateMany({}, { $set: { done: true }});
 
-    res.redirect("/todolist");
+    res.redirect("/");
 });
 
 
