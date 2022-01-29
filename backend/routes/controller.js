@@ -2,25 +2,25 @@ const { todolist }=require('../models/index');
 const asyncHandler = require('express-async-handler');
 const { createResponse } = require('../utils/response');
 
-const showlist = asyncHandler(async (req, res) => {
+const showList = asyncHandler(async (req, res) => {
     const list= await todolist.find();
 
     res.json(createResponse(res, list));
 });
 
-const addtodo = asyncHandler(async (req, res) => {
+const addTodo = asyncHandler(async (req, res) => {
     await todolist.create({ text: req.body.text });
 
     res.redirect("/");
 });
 
-const deltodo = asyncHandler(async (req, res) => {
+const delTodo = asyncHandler(async (req, res) => {
     await todolist.deleteOne({ id: req.body.id });
 
     res.redirect("/");
 });
 
-const updatetodo = asyncHandler(async (req, res) => {
+const updateTodo = asyncHandler(async (req, res) => {
     if(req.body.done==false)
         await todolist.updateOne({ id: req.body.id }, { done: true});
     else
@@ -29,15 +29,15 @@ const updatetodo = asyncHandler(async (req, res) => {
     res.redirect("/");
 });
 
-const updateall = asyncHandler(async (req, res) => {
+const updateAll = asyncHandler(async (req, res) => {
         await todolist.updateMany({}, { $set: { done: true }});
 
     res.redirect("/");
 });
 
 
-exports.showlist=showlist;
-exports.addtodo=addtodo;
-exports.deltodo=deltodo;
-exports.updatetodo=updatetodo;
-exports.updateall=updateall;
+exports.showlist=showList;
+exports.addtodo=addTodo;
+exports.deltodo=delTodo;
+exports.updatetodo=updateTodo;
+exports.updateall=updateAll;
