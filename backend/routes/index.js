@@ -11,7 +11,7 @@ router.post('/',controller.addTodo)
 
 //할일 삭제
 //router.post('/deltodo', controller.deltodo);
-router.delete('/:id', controller.delTodo)
+router.delete('/:id', controller.deleteTodo)
 
 //할일 완료여부수정
 //router.post('/updatetodo', controller.updatetodo);

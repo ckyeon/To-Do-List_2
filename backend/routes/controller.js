@@ -14,14 +14,18 @@ const addTodo = asyncHandler(async (req, res) => {
     res.json(createResponse(res, ''));
 });
 
-const delTodo = asyncHandler(async (req, res) => {
-    await todolist.deleteOne({ id: req.body.id });
+const deleteTodo = asyncHandler(async (req, res) => {
+    //await todolist.deleteOne({ id: req.body.id });
+    const {body: {_id}} = req;
+    await todolist.deleteOne({_id});
 
     res.json(createResponse(res, ''));
 });
 
-const updateTodo = asyncHandler(async (req, res) => {
-    await todolist.updateOne({ id: req.body.id }, { done: req.body.done});
+const updateTodo = asyncHandler(async (req, res) => {   
+    //await todolist.updateOne({ id: req.body.id }, { done: req.body.done })
+    const {body: {_id, done}} = req;
+    await todolist.updateOne({_id}, {done});
     
     res.json(createResponse(res, ''));
 });
@@ -35,6 +39,6 @@ const updateTodo = asyncHandler(async (req, res) => {
 
 exports.showList=showList;
 exports.addTodo=addTodo;
-exports.delTodo=delTodo;
+exports.deleteTodo=deleteTodo;
 exports.updateTodo=updateTodo;
-exports.updateAll=updateAll;
+//exports.updateAll=updateAll;
