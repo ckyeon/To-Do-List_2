@@ -11,33 +11,30 @@ const showList = asyncHandler(async (req, res) => {
 const addTodo = asyncHandler(async (req, res) => {
     await todolist.create({ text: req.body.text });
 
-    res.redirect("/");
+    res.json(createResponse(res, ''));
 });
 
 const delTodo = asyncHandler(async (req, res) => {
     await todolist.deleteOne({ id: req.body.id });
 
-    res.redirect("/");
+    res.json(createResponse(res, ''));
 });
 
 const updateTodo = asyncHandler(async (req, res) => {
-    if(req.body.done==false)
-        await todolist.updateOne({ id: req.body.id }, { done: true});
-    else
-        await todolist.updateOne({ id: req.body.id }, { done: false});
-
-    res.redirect("/");
+    await todolist.updateOne({ id: req.body.id }, { done: req.body.done});
+    
+    res.json(createResponse(res, ''));
 });
 
 const updateAll = asyncHandler(async (req, res) => {
-        await todolist.updateMany({}, { $set: { done: true }});
+    await todolist.updateMany({}, { $set: { done: true }});
 
-    res.redirect("/");
+    res.json(createResponse(res, ''));
 });
 
 
-exports.showlist=showList;
-exports.addtodo=addTodo;
-exports.deltodo=delTodo;
-exports.updatetodo=updateTodo;
-exports.updateall=updateAll;
+exports.showList=showList;
+exports.addTodo=addTodo;
+exports.delTodo=delTodo;
+exports.updateTodo=updateTodo;
+exports.updateAll=updateAll;
