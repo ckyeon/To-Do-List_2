@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const controller=require('./controller');
 
-//메인 페이지
+//할일목록 가져오기
 //router.get('/todolist', controller.showlist);
 router.get('/', controller.showList)
 

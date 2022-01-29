@@ -16,16 +16,17 @@ const addTodo = asyncHandler(async (req, res) => {
 
 const deleteTodo = asyncHandler(async (req, res) => {
     //await todolist.deleteOne({ id: req.body.id });
-    const {body: {_id}} = req;
-    await todolist.deleteOne({_id});
+    const {params: {id}} = req;
+    await todolist.deleteOne({id});
 
     res.json(createResponse(res, ''));
 });
 
 const updateTodo = asyncHandler(async (req, res) => {   
     //await todolist.updateOne({ id: req.body.id }, { done: req.body.done })
-    const {body: {_id, done}} = req;
-    await todolist.updateOne({_id}, {done});
+    const {params: {id}} = req;
+    const {body: {done}} = req;
+    await todolist.updateOne({id}, {done});
     
     res.json(createResponse(res, ''));
 });
