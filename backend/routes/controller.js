@@ -26,11 +26,11 @@ const updateTodo = asyncHandler(async (req, res) => {
     res.json(createResponse(res, ''));
 });
 
-const updateAll = asyncHandler(async (req, res) => {
-    await todolist.updateMany({}, { $set: { done: true }});
+// const updateAll = asyncHandler(async (req, res) => {
+//     await todolist.updateMany({}, { $set: { done: true }});
 
-    res.json(createResponse(res, ''));
-});
+//     res.json(createResponse(res, ''));
+// });
 
 
 exports.showList=showList;
