@@ -15,13 +15,13 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class TodoService {
-  Url = 'http://localhost:4003/';  // URL to web api
+  Url = 'http://localhost:4003/todolist';  // URL to web api
 
   constructor(private http: HttpClient) {}
 
   /** GET heroes from the server */
   get(): Observable<Todo[]> {
-    return this.http.get<Todo[]>(this.Url + 'todolist')
+    return this.http.get<Todo[]>(this.Url)
   }
 
   /* 입력된 단어가 포함된 히어로 목록을 GET 방식으로 요청합니다. */

@@ -31,12 +31,13 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
   }
 
   getTodo(){
-    this.service.get();
+    console.log('hahaa')
+    this.service.get().subscribe((res) =>  console.log(res));
   }
 
   addTodo(text: string){
-    var newId = !this.todos.length ? 1 : this.todos[this.todos.length - 1].id + 1
-    var newTodo = {
+    const newId = !this.todos.length ? 1 : this.todos[this.todos.length - 1].id + 1
+    const newTodo = {
       id: newId,
       done: false,
       text: text
