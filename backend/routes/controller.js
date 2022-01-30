@@ -9,9 +9,9 @@ const showList = asyncHandler(async (req, res) => {
 });
 
 const addTodo = asyncHandler(async (req, res) => {
-    await todolist.create(req.body);
+    const todo = await todolist.create(req.body);
 
-    res.json(createResponse(res, ''));
+    res.json(createResponse(res, todo));
 });
 
 const deleteTodo = asyncHandler(async (req, res) => {
