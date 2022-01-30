@@ -11,44 +11,29 @@ const httpOptions = {
   })
 };
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class TodoService {
-  Url = 'http://localhost:4003/todolist';  // URL to web api
+  Url = 'http://localhost:4003/';  // URL to web api
 
   constructor(private http: HttpClient) {}
 
-  /** GET heroes from the server */
-  get(): Observable<Todo[]> {
-    return this.http.get<Todo[]>(this.Url)
+  /** GET todos from the server */
+  getTodo(callback: any) {
+    this.http.get(this.Url + 'todolist').subscribe(callback);
   }
 
-  /* 입력된 단어가 포함된 히어로 목록을 GET 방식으로 요청합니다. */
-  search(term: string): Observable<Todo[]> {
-    term = term.trim();
-
-    // 전달된 인자로 HttpParams 객체를 생성합니다.
-    const options = term ?
-      { params: new HttpParams().set('name', term) } : {};
-
-    return this.http.get<Todo[]>(this.Url, options)
+  /** POST: DB에 새로운 todo를 추가합니다. */
+  addTodo(todo: Todo, callback: any) {
+    this.http.post(this.Url + 'addtodo', todo).subscribe(callback);
   }
 
-  /** POST: DB에 새로운 히어로를 추가합니다. */
-  add(todo: Todo): Observable<Todo> {
-    console.log("할일 추가");
-    return this.http.post<Todo>(this.Url, todo, httpOptions)
+  /** DELETE: DB에서 todo를 삭제합니다. */
+  deleteTodo(id: number, callback: any) {
+    this.http.delete(this.Url + 'deltodo/${id}').subscribe(callback);
   }
 
-  /** DELETE: DB에서 히어로를 삭제합니다. */
-  delete(id: number): Observable<unknown> {
-    const url = `${this.Url}/${id}`;
-    return this.http.delete(url, httpOptions)
-  }
-
-  /** PUT: DB 데이터를 수정합니다. HTTP 요청이 성공하면 새로운 히어로 데이터를 반환합니다. */
-  update(todo: Todo): Observable<Todo> {
+  /** PUT: DB 데이터를 수정합니다. HTTP 요청이 성공하면 새로운 todo 데이터를 반환합니다. */
+  updateTodo(todo: Todo): Observable<Todo> {
     httpOptions.headers =
       httpOptions.headers.set('Authorization', 'my-new-auth-token');
 

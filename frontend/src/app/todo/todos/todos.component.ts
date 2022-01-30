@@ -16,6 +16,9 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
   todos: Todo[];
   newText: string = '';
   today: Date = new Date();
+  _id: number = 0;
+  text: string = '';
+  done: boolean = false;
 
   constructor(private http: HttpClient, private service: TodoService) {
     this.todos = [];
@@ -23,7 +26,6 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
 
   ngOnInit(): void {
     this.getTodo();
-    console.log('haha');
   }
 
   toggleTodo(todo: any){
@@ -31,28 +33,39 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
   }
 
   getTodo(){
-    console.log('hahaa')
-    this.service.get().subscribe((res) =>  console.log(res));
+    // @ts-ignore
+    const onSuccess = res => {
+      const todo = res.data;
+      this.todos = todo;
+    }
+    this.service.getTodo(onSuccess);
   }
 
   addTodo(text: string){
-    const newId = !this.todos.length ? 1 : this.todos[this.todos.length - 1].id + 1
+    const newId = !this.todos.length ? 1 : this.todos[this.todos.length - 1]._id + 1
     const newTodo = {
-      id: newId,
+      _id: newId,
       done: false,
       text: text
     };
-    console.log(this.service.get());
-    this.service.add(newTodo);
-    this.todos.push(newTodo)
+    // @ts-ignore
+    const callback = res => {
+      const newTodo: Todo = res.data;
+      this.ngOnInit();
+    }
+    this.service.addTodo(newTodo, callback);
   }
 
   deleteTodo(id: number){
-    for(let i=0; i<= this.todos.length; i++){
-      if(id == this.todos[i].id){
-        this.todos.splice(i, 1);
+    // @ts-ignore
+    const onSuccess = res => {
+      if(res.status === 204){
+        alert('할일 삭제 성공');
+        return;
       }
+      alert('할일 삭제 실패');
     }
+    this.service.deleteTodo(id, onSuccess);
   }
 
   AllCompleteTodo(){

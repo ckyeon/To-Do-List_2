@@ -11,7 +11,8 @@
       <span>
         <input type="checkbox" id="check"/>
         <label class="todoList">{{ todo.text }}</label>
-        <button class="remove" (click)="deleteTodo(todo.id)">Remove</button>
+        <button class="remove" (click)="deleteTodo(todo._id)">Remove</button>
+        {{todo._id}}
         {{todo.done}}
       </span>
     </div>
