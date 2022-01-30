@@ -2,7 +2,7 @@
 이진원, 오지우, 송수영
 # api
 할일목록 가져오기
-* (get) localhost:port/todolist
+* (get) localhost:port/
     * 응답 예
     ```json
    {
@@ -28,37 +28,59 @@
 
 
 할일 추가하기
-* (post) localhost:port/addtodo
+* (post) localhost:port/
     * 요청
 
     |body| 예 |
     |---|---|
-    |test|할일내용|
+    |text|할일내용|
+
+    * 응답 예
+
+    ```json
+    {
+	"success": true,
+	"status": 200,
+	"message": "OK",
+	"data": ""
+    }
+    ```
 
 
 할일 삭제하기
-* (post) localhost:port/deltodo
+* (delete) localhost:port/:id
     * 요청
 
     |body| 예 |
     |---|---|
-    |id|todo의 id|
+
+    * 응답 예
+
+    ```json
+    {
+	"success": true,
+	"status": 200,
+	"message": "OK",
+	"data": ""
+    }
+    ```
 
 
 할일 완료여부수정
-* (post) localhost:port/updatetodo
+* (put) localhost:port/:id
     * 요청
 
     |body| 예 |
     |---|---|
-    |id|todo의 id|
 	|done|todo의 done|
-
-
-할일 전부완료
-* (get) localhost:port/updateall
-    * 요청
-
-    |body| 예 |
-    |---|---|
     
+    * 응답 예
+
+    ```json
+    {
+	"success": true,
+	"status": 200,
+	"message": "OK",
+	"data": ""
+    }
+    ```

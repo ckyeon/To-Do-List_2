@@ -2,42 +2,43 @@ const { todolist }=require('../models/index');
 const asyncHandler = require('express-async-handler');
 const { createResponse } = require('../utils/response');
 
-const showlist = asyncHandler(async (req, res) => {
-    const list= await todolist.find();
+const showList = asyncHandler(async (req, res) => {
+    const list= await todolist.find(req.query);
 
     res.json(createResponse(res, list));
 });
 
-const addtodo = asyncHandler(async (req, res) => {
-    await todolist.create({ text: req.body.text });
+const addTodo = asyncHandler(async (req, res) => {
+    await todolist.create(req.body);
 
-    res.redirect("/todolist");
+    res.json(createResponse(res, ''));
 });
 
-const deltodo = asyncHandler(async (req, res) => {
-    await todolist.deleteOne({ id: req.body.id });
+const deleteTodo = asyncHandler(async (req, res) => {
+    //await todolist.deleteOne({ id: req.body.id });
+    const {params: {id}} = req;
+    await todolist.deleteOne({_id:id});
 
-    res.redirect("/todolist");
+    res.json(createResponse(res, ''));
 });
 
-const updatetodo = asyncHandler(async (req, res) => {
-    if(req.body.done==false)
-        await todolist.updateOne({ id: req.body.id }, { done: true});
-    else
-        await todolist.updateOne({ id: req.body.id }, { done: false});
-
-    res.redirect("/todolist");
+const updateTodo = asyncHandler(async (req, res) => {   
+    //await todolist.updateOne({ id: req.body.id }, { done: req.body.done })
+    const {params: {id}} = req;
+    await todolist.updateOne({_id:id}, req.body);
+    
+    res.json(createResponse(res, ''));
 });
 
-const updateall = asyncHandler(async (req, res) => {
-        await todolist.updateMany({}, { $set: { done: true }});
+// const updateAll = asyncHandler(async (req, res) => {
+//     await todolist.updateMany({}, { $set: { done: true }});
 
-    res.redirect("/todolist");
-});
+//     res.json(createResponse(res, ''));
+// });
 
 
-exports.showlist=showlist;
-exports.addtodo=addtodo;
-exports.deltodo=deltodo;
-exports.updatetodo=updatetodo;
-exports.updateall=updateall;
+exports.showList=showList;
+exports.addTodo=addTodo;
+exports.deleteTodo=deleteTodo;
+exports.updateTodo=updateTodo;
+//exports.updateAll=updateAll;
