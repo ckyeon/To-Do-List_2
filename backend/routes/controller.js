@@ -3,13 +3,13 @@ const asyncHandler = require('express-async-handler');
 const { createResponse } = require('../utils/response');
 
 const showList = asyncHandler(async (req, res) => {
-    const list= await todolist.find();
+    const list= await todolist.find(req.query);
 
     res.json(createResponse(res, list));
 });
 
 const addTodo = asyncHandler(async (req, res) => {
-    await todolist.create({ text: req.body.text });
+    await todolist.create(req.body);
 
     res.json(createResponse(res, ''));
 });
@@ -25,8 +25,7 @@ const deleteTodo = asyncHandler(async (req, res) => {
 const updateTodo = asyncHandler(async (req, res) => {   
     //await todolist.updateOne({ id: req.body.id }, { done: req.body.done })
     const {params: {id}} = req;
-    const {body: {done}} = req;
-    await todolist.updateOne({_id:id}, {done});
+    await todolist.updateOne({_id:id}, req.body);
     
     res.json(createResponse(res, ''));
 });
