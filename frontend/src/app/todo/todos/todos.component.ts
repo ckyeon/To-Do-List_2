@@ -29,7 +29,11 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
   }
 
   toggleTodo(todo: any){
-    todo.done = !todo.done
+    // @ts-ignore
+    const onSuccess = res => {
+      todo.done = !todo.done
+    }
+    this.service.updateTodo(todo._id, todo.done, onSuccess);
   }
 
   getTodo(){
@@ -42,28 +46,18 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
   }
 
   addTodo(text: string){
-    const newId = !this.todos.length ? 1 : this.todos[this.todos.length - 1]._id + 1
-    const newTodo = {
-      _id: newId,
-      done: false,
-      text: text
-    };
     // @ts-ignore
-    const callback = res => {
-      const newTodo: Todo = res.data;
-      this.ngOnInit();
-    }
-    this.service.addTodo(newTodo, callback);
+    this.service.addTodo(text);
+    this.ngOnInit();
   }
 
   deleteTodo(id: number){
     // @ts-ignore
     const onSuccess = res => {
-      if(res.status === 204){
-        alert('할일 삭제 성공');
+      if(res.status === 200){
+        this.ngOnInit();
         return;
       }
-      alert('할일 삭제 실패');
     }
     this.service.deleteTodo(id, onSuccess);
   }

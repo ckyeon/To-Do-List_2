@@ -17,26 +17,24 @@ export class TodoService {
 
   constructor(private http: HttpClient) {}
 
-  /** GET todos from the server */
+  /* Todo list 받아오기 */
   getTodo(callback: any) {
-    this.http.get(this.Url + 'todolist').subscribe(callback);
+    this.http.get(this.Url).subscribe(callback);
   }
 
-  /** POST: DB에 새로운 todo를 추가합니다. */
-  addTodo(todo: Todo, callback: any) {
-    this.http.post(this.Url + 'addtodo', todo).subscribe(callback);
+  /* Todo list 추가하기 */
+  addTodo(text: string) {
+    console.log(text);
+    this.http.post(this.Url, text).subscribe();
   }
 
-  /** DELETE: DB에서 todo를 삭제합니다. */
+  /* Todo list 삭제하기 */
   deleteTodo(id: number, callback: any) {
-    this.http.delete(this.Url + 'deltodo/${id}').subscribe(callback);
+    this.http.delete(this.Url + `${id}`).subscribe(callback);
   }
 
-  /** PUT: DB 데이터를 수정합니다. HTTP 요청이 성공하면 새로운 todo 데이터를 반환합니다. */
-  updateTodo(todo: Todo): Observable<Todo> {
-    httpOptions.headers =
-      httpOptions.headers.set('Authorization', 'my-new-auth-token');
-
-    return this.http.put<Todo>(this.Url, todo, httpOptions)
+  /* Todo list 체크 활성화 하기 */
+  updateTodo(id: number, done: boolean, callback: any) {
+    this.http.put(this.Url + `${id}`, done).subscribe(callback);
   }
 }
