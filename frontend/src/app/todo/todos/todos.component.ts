@@ -16,12 +16,11 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
   todos: Todo[];
   newText: string = '';
   today: Date = new Date();
-  _id: number = 0;
-  text: string = '';
-  done: boolean = false;
 
   constructor(private http: HttpClient, private service: TodoService) {
-    this.todos = [];
+    this.todos = [
+      {_id: 1, done: false, text: "운동하기"}
+    ];
   }
 
   ngOnInit(): void {
@@ -29,11 +28,19 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
   }
 
   toggleTodo(todo: any){
+    todo.done = !todo.done
+
     // @ts-ignore
     const onSuccess = res => {
-      todo.done = !todo.done
+      const config = {
+        headers: {
+          'Accept': 'application/json'
+        }
+      }
+      fetch('/api')
+      this.ngOnInit();
     }
-    this.service.updateTodo(todo._id, todo.done, onSuccess);
+    this.service.updateTodo(todo, onSuccess);
   }
 
   getTodo(){
@@ -47,8 +54,10 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
 
   addTodo(text: string){
     // @ts-ignore
-    this.service.addTodo(text);
-    this.ngOnInit();
+    const onSuccess = res => {
+      this.ngOnInit();
+    }
+    this.service.addTodo(text, onSuccess);
   }
 
   deleteTodo(id: number){
