@@ -32,15 +32,9 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
 
     // @ts-ignore
     const onSuccess = res => {
-      const config = {
-        headers: {
-          'Accept': 'application/json'
-        }
-      }
-      fetch('/api')
       this.ngOnInit();
     }
-    this.service.updateTodo(todo, onSuccess);
+    this.service.updateTodo(todo._id, todo.done, onSuccess);
   }
 
   getTodo(){
@@ -72,33 +66,34 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
   }
 
   AllCompleteTodo(){
-    const items = document.querySelectorAll(".todoList");
-    items.forEach((item) => item.classList.remove("done"));
-
+    // @ts-ignore
+    const onSuccess = res => {
+      this.ngOnInit();
+    }
     this.todos.forEach((obj) => {
       if (obj.done === false) {
-        obj.done = true;
+        obj.done = !obj.done
       }
+      this.service.updateTodo(obj._id, obj.done, onSuccess);
     });
-    let checks = document.querySelectorAll('#check');
-    checks.forEach((check) => check.setAttribute('checked', 'true'));
   }
 
   AllResetTodo(){
-    const items = document.querySelectorAll(".todoList");
-    items.forEach((item) => item.classList.remove("done"));
-
+    // @ts-ignore
+    const onSuccess = res => {
+      this.ngOnInit();
+    }
     this.todos.forEach((obj) => {
       if (obj.done === true) {
-        obj.done = false;
+        obj.done = !obj.done
       }
+      this.service.updateTodo(obj._id, obj.done, onSuccess);
     });
-    let checks = document.querySelectorAll('#check');
-    checks.forEach((check) => check.setAttribute('checked', 'false'));
   }
 
   AllDeleteTodo(){
-    let todos = this.todos;
-    todos.splice(0, todos.length);
+    this.todos.forEach((obj) => {
+      this.deleteTodo(obj._id);
+    });
   }
 }

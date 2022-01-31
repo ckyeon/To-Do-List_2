@@ -9,11 +9,9 @@
   <div>
     <div *ngFor="let todo of todos">
       <span>
-        <input type="checkbox" id="check" (click)="toggleTodo(todo)"/>
+        <input type="checkbox" id="check" [checked]="todo.done" (click)="toggleTodo(todo)"/>
         <label class="todoList">{{ todo.text }}</label>
         <button class="remove" (click)="deleteTodo(todo._id)">Remove</button>
-        {{todo._id}}
-        {{todo.text}}
         {{todo.done}}
       </span>
     </div>

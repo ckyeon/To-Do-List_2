@@ -24,8 +24,7 @@ export class TodoService {
 
   /* Todo list 추가하기 */
   addTodo(text: string, callback: any) {
-    console.log(text);
-    this.http.post(this.Url, text).subscribe(callback);
+    this.http.post(this.Url, {text}).subscribe(callback);
   }
 
   /* Todo list 삭제하기 */
@@ -34,7 +33,7 @@ export class TodoService {
   }
 
   /* Todo list 체크 활성화 하기 */
-  updateTodo(todo: Todo, callback: any) {
-    this.http.put(this.Url + `${todo._id}`, todo.done).subscribe(callback);
+  updateTodo(id: number, done: boolean, callback: any) {
+    this.http.put(this.Url + `${id}`, {done}).subscribe(callback);
   }
 }
