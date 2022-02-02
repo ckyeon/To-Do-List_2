@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Todo} from "../share/todo.model";
+import { HttpClient} from '@angular/common/http';
+import {TodoService} from "../todo.service";
 
 // 뷰
 @Component({  // 타입스크립트의 데코레이터 -> 일종의 함수, 컴포넌트가 어떻게 동작하는 지를 메타데이터로 전달
@@ -15,64 +17,83 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
   newText: string = '';
   today: Date = new Date();
 
-  constructor() {
+  constructor(private http: HttpClient, private service: TodoService) {
     this.todos = [
+      {_id: 1, done: false, text: "운동하기"}
     ];
   }
 
   ngOnInit(): void {
+    this.getTodo();
   }
 
   toggleTodo(todo: any){
     todo.done = !todo.done
+
+    // @ts-ignore
+    const onSuccess = res => {
+      this.ngOnInit();
+    }
+    this.service.updateTodo(todo._id, todo.done, onSuccess);
+  }
+
+  getTodo(){
+    // @ts-ignore
+    const onSuccess = res => {
+      const todo = res.data;
+      this.todos = todo;
+    }
+    this.service.getTodo(onSuccess);
   }
 
   addTodo(text: string){
-    if(text != ''){
-      this.todos.push({
-        id: this.todos.length,
-        done: false,
-        text: text
-      });
+    // @ts-ignore
+    const onSuccess = res => {
+      this.ngOnInit();
     }
+    this.service.addTodo(text, onSuccess);
   }
 
   deleteTodo(id: number){
-    for(let i=0; i<= this.todos.length; i++){
-      if(id == this.todos[i].id){
-        this.todos.splice(i, 1);
+    // @ts-ignore
+    const onSuccess = res => {
+      if(res.status === 200){
+        this.ngOnInit();
+        return;
       }
     }
+    this.service.deleteTodo(id, onSuccess);
   }
 
   AllCompleteTodo(){
-    const items = document.querySelectorAll(".todoList");
-    items.forEach((item) => item.classList.remove("done"));
-
+    // @ts-ignore
+    const onSuccess = res => {
+      this.ngOnInit();
+    }
     this.todos.forEach((obj) => {
       if (obj.done === false) {
-        obj.done = true;
+        obj.done = !obj.done
       }
+      this.service.updateTodo(obj._id, obj.done, onSuccess);
     });
-    let checks = document.querySelectorAll('#check');
-    checks.forEach((check) => check.setAttribute('checked', 'true'));
   }
 
   AllResetTodo(){
-    const items = document.querySelectorAll(".todoList");
-    items.forEach((item) => item.classList.remove("done"));
-
+    // @ts-ignore
+    const onSuccess = res => {
+      this.ngOnInit();
+    }
     this.todos.forEach((obj) => {
       if (obj.done === true) {
-        obj.done = false;
+        obj.done = !obj.done
       }
+      this.service.updateTodo(obj._id, obj.done, onSuccess);
     });
-    let checks = document.querySelectorAll('#check');
-    checks.forEach((check) => check.setAttribute('checked', 'false'));
   }
 
   AllDeleteTodo(){
-    let todos = this.todos;
-    todos.splice(0, todos.length);
+    this.todos.forEach((obj) => {
+      this.deleteTodo(obj._id);
+    });
   }
 }

@@ -7,11 +7,11 @@
     <app-add-todo (onTodoAdded)="addTodo($event)"></app-add-todo>
   </div>
   <div>
-    <div *ngFor="let todo of todos" (click)="toggleTodo(todo)">
+    <div *ngFor="let todo of todos">
       <span>
-        <input type="checkbox" id="check"/>
+        <input type="checkbox" id="check" [checked]="todo.done" (click)="toggleTodo(todo)"/>
         <label class="todoList">{{ todo.text }}</label>
-        <button class="remove" (click)="deleteTodo(todo.id)">Remove</button>
+        <button class="remove" (click)="deleteTodo(todo._id)">Remove</button>
         {{todo.done}}
       </span>
     </div>
