@@ -1,15 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Todo } from './share/todo.model';
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    Authorization: 'my-auth-token'
-  })
-};
+import { HttpClient} from '@angular/common/http';
+import { Todo } from '../../share/todo.model';
 
 @Injectable()
 export class TodoService {
@@ -33,7 +24,8 @@ export class TodoService {
   }
 
   /* Todo list 체크 활성화 하기 */
-  updateTodo(id: number, done: boolean, callback: any) {
-    this.http.put(this.Url + `${id}`, {done}).subscribe(callback);
+  updateTodo(todo: Todo, callback: any) {
+    let done = todo.done;
+    this.http.put(this.Url + `${todo._id}`, {done}).subscribe(callback);
   }
 }

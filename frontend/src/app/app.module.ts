@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {TodoModule} from "./todo/todo.module";
 import {HttpClientModule} from "@angular/common/http";
-import {TodoService} from "./todo/todo.service";
+import {TodoService} from "./todo/todos/service/todo.service";
 
 // angular의 루트모듈을 설정하는 클래스
 @NgModule({

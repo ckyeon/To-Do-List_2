@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Todo} from "../share/todo.model";
 import { HttpClient} from '@angular/common/http';
-import {TodoService} from "../todo.service";
+import {TodoService} from "./service/todo.service";
 
 // 뷰
 @Component({  // 타입스크립트의 데코레이터 -> 일종의 함수, 컴포넌트가 어떻게 동작하는 지를 메타데이터로 전달
@@ -30,16 +30,14 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
   toggleTodo(todo: any){
     todo.done = !todo.done
 
-    // @ts-ignore
-    const onSuccess = res => {
+    const onSuccess = () => {
       this.ngOnInit();
     }
-    this.service.updateTodo(todo._id, todo.done, onSuccess);
+    this.service.updateTodo(todo, onSuccess);
   }
 
   getTodo(){
-    // @ts-ignore
-    const onSuccess = res => {
+    const onSuccess = (res: any) => {
       const todo = res.data;
       this.todos = todo;
     }
@@ -47,16 +45,14 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
   }
 
   addTodo(text: string){
-    // @ts-ignore
-    const onSuccess = res => {
+    const onSuccess = () => {
       this.ngOnInit();
     }
     this.service.addTodo(text, onSuccess);
   }
 
   deleteTodo(id: number){
-    // @ts-ignore
-    const onSuccess = res => {
+    const onSuccess = (res: any) => {
       if(res.status === 200){
         this.ngOnInit();
         return;
@@ -66,28 +62,26 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
   }
 
   AllCompleteTodo(){
-    // @ts-ignore
-    const onSuccess = res => {
+    const onSuccess = () => {
       this.ngOnInit();
     }
     this.todos.forEach((obj) => {
       if (obj.done === false) {
         obj.done = !obj.done
       }
-      this.service.updateTodo(obj._id, obj.done, onSuccess);
+      this.service.updateTodo(obj, onSuccess);
     });
   }
 
   AllResetTodo(){
-    // @ts-ignore
-    const onSuccess = res => {
+    const onSuccess = () => {
       this.ngOnInit();
     }
     this.todos.forEach((obj) => {
       if (obj.done === true) {
         obj.done = !obj.done
       }
-      this.service.updateTodo(obj._id, obj.done, onSuccess);
+      this.service.updateTodo(obj, onSuccess);
     });
   }
 
