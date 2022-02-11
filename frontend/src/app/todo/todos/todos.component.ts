@@ -19,7 +19,8 @@ export class TodosComponent implements OnInit  {  // 클래스가 하나의 컴�
 
   constructor(private http: HttpClient, private service: TodoService) {
     this.todos = [
-      {_id: 1, done: false, text: "운동하기"}
+      {_id: 1, done: false, text: "운동 하기"},
+      {_id: 2, done: false, text: "빨래 하기"}
     ];
   }
 

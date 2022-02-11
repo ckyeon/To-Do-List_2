@@ -35,6 +35,9 @@ app-todo, app-add-todo{
   border-bottom: 1px solid #252222;
 }
 
+input{
+  text-decoration: none;
+}
 input:checked + label{
   text-decoration: line-through;
 }
