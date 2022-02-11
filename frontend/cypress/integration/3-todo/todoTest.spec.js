@@ -49,16 +49,16 @@ context('화면 테스트', () => {
   })
 
   it('Todo 전체 체크 기능 테스트', () => {
-    // 전체 할 일 목록 삭제하기
+    // 전체 할 일 목록 체크하기
     cy.get('.btn-group').contains('All Completed').click().then(() => {
       cy.get('.todoList').should('have.css', 'text-decoration', 'line-through solid rgb(0, 0, 0)');
     })
   })
 
   it('Todo 전체 체크 해제 기능 테스트', () => {
-    // 전체 할 일 목록 삭제하기
+    // 전체 할 일 목록 체크 해제하기
     cy.get('.btn-group').contains('All Reset').click().then(() => {
-      cy.get('.todoList').should('have.css', 'text-decoration', 'none');
+      cy.get('span').should('contain.text', 'false');
     })
   })
 
