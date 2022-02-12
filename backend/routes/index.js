@@ -20,5 +20,8 @@ router.put("/:id", controller.updateTodo)
 //할일 전부완료
 // router.put('/', controller.updateAll);
 
+//완료된 할일 삭제
+router.delete('/', controller.deleteDone)
+
 
 module.exports=router;
