@@ -21,6 +21,12 @@ const deleteTodo = asyncHandler(async (req, res) => {
   const {params: {id: _id}} = req;
   const promise = await todolist.deleteOne({_id});
   res.json(createResponse(res, promise));
+
+    // const {params: {id}} = req;
+    // const promise=await todolist.deleteOne({_id:id});
+
+    // res.json(createResponse(res, promise));
+
 });
 
 const updateTodo = asyncHandler(async (req, res) => {   
@@ -28,6 +34,11 @@ const updateTodo = asyncHandler(async (req, res) => {
   const {params: {id:_id}, body: $set} = req;
   const promise = await todolist.updateOne({_id}, $set);
   res.json(createResponse(res, promise));
+
+    // const {params: {id}} = req;
+    // const promise=await todolist.updateOne({_id:id}, req.body);
+    
+    // res.json(createResponse(res, promise));
 });
 
 // const updateAll = asyncHandler(async (req, res) => {
